@@ -5,7 +5,7 @@ require_once "connect.php";
 $servername = "localhost";
 $username = "userdb";
 $password = "databaza";
-$dbname = "categories";
+$dbname = "northwindmysql";
 
 
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -81,7 +81,7 @@ $dodavatelia_result = $conn->query($dodavatelia_sql);
         echo "0 výsledkov";
     }
     ?>
-    
+
     <h2>Dodávatelia</h2>
     <?php
     if ($dodavatelia_result->num_rows > 0) {
@@ -92,6 +92,52 @@ $dodavatelia_result = $conn->query($dodavatelia_sql);
         }
         echo "</tr>";
         while($row = $dodavatelia_result->fetch_assoc()) {
+            echo "<tr>";
+            foreach($row as $value) {
+                echo "<td>$value</td>";
+            }
+            echo "</tr>";
+        }
+        echo "</table>";
+    } else {
+        echo "0 výsledkov";
+    }
+    ?>
+
+</body>
+</html>
+
+<?php
+$conn->close();
+?>
+
+
+<?php
+
+$zakaznici_sql = "SELECT * FROM Zakaznici ORDER BY krajina, nazov";
+$zakaznici_result = $conn->query($zakaznici_sql);
+
+?>
+
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+    <meta charset="UTF-8">
+    <title>požiadavka 02</title>
+</head>
+<body>
+    <h1>požiadavka 02</h1>
+
+    <h2>Zákazníci</h2>
+    <?php
+    if ($zakaznici_result->num_rows > 0) {
+        echo "<table border='1'>";
+        echo "<tr>";
+        while ($fieldinfo = $zakaznici_result->fetch_field()) {
+            echo "<th>{$fieldinfo->name}</th>";
+        }
+        echo "</tr>";
+        while($row = $zakaznici_result->fetch_assoc()) {
             echo "<tr>";
             foreach($row as $value) {
                 echo "<td>$value</td>";
