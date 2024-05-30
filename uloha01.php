@@ -1,11 +1,10 @@
 <?php
 
-date_default_timezone_set('Europe/Bratislava');
-
+require_once "connect.php";
 
 $servername = "localhost";
-$username = "Morava";
-$password = "admin123";
+$username = "userdb";
+$password = "databaza";
 $dbname = "categories";
 
 
@@ -82,7 +81,7 @@ $dodavatelia_result = $conn->query($dodavatelia_sql);
         echo "0 výsledkov";
     }
     ?>
-
+    
     <h2>Dodávatelia</h2>
     <?php
     if ($dodavatelia_result->num_rows > 0) {
