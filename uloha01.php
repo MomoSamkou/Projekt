@@ -156,3 +156,68 @@ $zakaznici_result = $conn->query($zakaznici_sql);
 <?php
 $conn->close();
 ?>
+
+<?php
+// uloha1.php
+
+// Nastavenie časového pásma
+date_default_timezone_set('Europe/Bratislava');
+
+// Nastavenie pripojenia k databáze
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "mojadatabaza";
+
+// Vytvorenie pripojenia
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Kontrola pripojenia
+if ($conn->connect_error) {
+    die("Pripojenie zlyhalo: " . $conn->connect_error);
+}
+
+// Získanie údajov z tabuľky Objednávky podľa dátumu
+$objednavky_sql = "SELECT * FROM Objednavky ORDER BY datum";
+$objednavky_result = $conn->query($objednavky_sql);
+
+?>
+
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+    <meta charset="UTF-8">
+    <title>požiadavka 03</title>
+</head>
+<body>
+    <h1>požiadavka 03</h1>
+
+    <h2>Objednávky</h2>
+    <?php
+    if ($objednavky_result->num_rows > 0) {
+        echo "<table border='1'>";
+        echo "<tr>";
+        while ($fieldinfo = $objednavky_result->fetch_field()) {
+            echo "<th>{$fieldinfo->name}</th>";
+        }
+        echo "</tr>";
+        while($row = $objednavky_result->fetch_assoc()) {
+            echo "<tr>";
+            foreach($row as $value) {
+                echo "<td>$value</td>";
+            }
+            echo "</tr>";
+        }
+        echo "</table>";
+    } else {
+        echo "0 výsledkov";
+    }
+    ?>
+
+</body>
+</html>
+
+<?php
+$conn->close();
+?>
+
