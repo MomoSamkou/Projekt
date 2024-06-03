@@ -5,9 +5,39 @@ $sql_customers = "SELECT * FROM customers";
 $sql_orders = "SELECT * FROM orders";
 $sql_suppliers = "SELECT * FROM suppliers";
 
+<<<<<<< HEAD
 $result_customers = $connection->query($sql_customers);
 $result_orders = $connection->query($sql_orders);
 $result_suppliers = $connection->query($sql_suppliers);
+=======
+require_once "connect.php";
+
+$servername = "localhost";
+$username = "userdb";
+$password = "databaza";
+$dbname = "northwindmysql";
+
+
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Kontrola pripojenia
+if ($conn->connect_error) {
+    die("Pripojenie zlyhalo: " . $conn->connect_error);
+}
+
+
+$zakaznici_sql = "SELECT * FROM Zakaznici";
+$zakaznici_result = $conn->query($zakaznici_sql);
+
+
+$objednavky_sql = "SELECT * FROM Objednavky";
+$objednavky_result = $conn->query($objednavky_sql);
+
+
+$dodavatelia_sql = "SELECT * FROM Dodavatelia";
+$dodavatelia_result = $conn->query($dodavatelia_sql);
+
+>>>>>>> a9e04f30ee0b261e7e4c79c3ee029aa016f282a8
 ?>
 
 <!DOCTYPE html>
@@ -137,6 +167,7 @@ $result_suppliers = $connection->query($sql_suppliers);
 $sql = "SELECT * FROM customers ORDER BY Country, CompanyName";
 $result = $connection->query($sql);
 ?>
+<<<<<<< HEAD
     <h1>požiadavka 02</h1>
     <table border="1">
         <tr>
@@ -294,3 +325,116 @@ $result = $connection->query($sql);
     </table>
 </body>
 </html>
+=======
+
+
+<?php
+
+$zakaznici_sql = "SELECT * FROM Zakaznici ORDER BY krajina, nazov";
+$zakaznici_result = $conn->query($zakaznici_sql);
+
+?>
+
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+    <meta charset="UTF-8">
+    <title>požiadavka 02</title>
+</head>
+<body>
+    <h1>požiadavka 02</h1>
+
+    <h2>Zákazníci</h2>
+    <?php
+    if ($zakaznici_result->num_rows > 0) {
+        echo "<table border='1'>";
+        echo "<tr>";
+        while ($fieldinfo = $zakaznici_result->fetch_field()) {
+            echo "<th>{$fieldinfo->name}</th>";
+        }
+        echo "</tr>";
+        while($row = $zakaznici_result->fetch_assoc()) {
+            echo "<tr>";
+            foreach($row as $value) {
+                echo "<td>$value</td>";
+            }
+            echo "</tr>";
+        }
+        echo "</table>";
+    } else {
+        echo "0 výsledkov";
+    }
+    ?>
+
+</body>
+</html>
+
+<?php
+$conn->close();
+?>
+
+<?php
+// uloha1.php
+
+// Nastavenie časového pásma
+date_default_timezone_set('Europe/Bratislava');
+
+// Nastavenie pripojenia k databáze
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "mojadatabaza";
+
+// Vytvorenie pripojenia
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Kontrola pripojenia
+if ($conn->connect_error) {
+    die("Pripojenie zlyhalo: " . $conn->connect_error);
+}
+
+// Získanie údajov z tabuľky Objednávky podľa dátumu
+$objednavky_sql = "SELECT * FROM Objednavky ORDER BY datum";
+$objednavky_result = $conn->query($objednavky_sql);
+
+?>
+
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+    <meta charset="UTF-8">
+    <title>požiadavka 03</title>
+</head>
+<body>
+    <h1>požiadavka 03</h1>
+
+    <h2>Objednávky</h2>
+    <?php
+    if ($objednavky_result->num_rows > 0) {
+        echo "<table border='1'>";
+        echo "<tr>";
+        while ($fieldinfo = $objednavky_result->fetch_field()) {
+            echo "<th>{$fieldinfo->name}</th>";
+        }
+        echo "</tr>";
+        while($row = $objednavky_result->fetch_assoc()) {
+            echo "<tr>";
+            foreach($row as $value) {
+                echo "<td>$value</td>";
+            }
+            echo "</tr>";
+        }
+        echo "</table>";
+    } else {
+        echo "0 výsledkov";
+    }
+    ?>
+
+</body>
+</html>
+
+<?php
+$conn->close();
+?>
+
+>>>>>>> a9e04f30ee0b261e7e4c79c3ee029aa016f282a8
