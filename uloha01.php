@@ -1,6 +1,6 @@
 <?php
 require_once "connect.php";
-
+//.
 $sql_customers = "SELECT * FROM customers";
 $sql_orders = "SELECT * FROM orders";
 $sql_suppliers = "SELECT * FROM suppliers";
