@@ -220,7 +220,7 @@ $result = $connection->query($sql);
     </table>
 
 <?php
-$sql = "SELECT COUNT(*) as total_orders FROM orders WHERE YEAR(OrderDate) = 1997";
+$sql = "SELECT COUNT(*) as total_orders FROM orders WHERE YEAR(OrderDate) = 1995";
 $result = $connection->query($sql);
 $row = $result->fetch_assoc();
 ?>
@@ -248,7 +248,7 @@ $result = $connection->query($sql);
     </table>
 
 <?php
-$sql = "SELECT * FROM orders WHERE OrderDate = '1997-05-19'";
+$sql = "SELECT * FROM orders WHERE OrderDate = '1995-09-28'";
 $result = $connection->query($sql);
 ?>
     <h1>požiadavka 06</h1>
