@@ -11,7 +11,7 @@ $sql = "
     JOIN customers c ON o.CustomerID = c.CustomerID
     WHERE YEAR(o.OrderDate) = 1996
 ";
-$result = $conn->query($sql);
+$result = $connection->query($sql);
 if ($result) {
     echo "<table>";
     echo "<tr><th>Order ID</th><th>Order Date</th><th>Customer ID</th><th>Company Name</th></tr>";
