@@ -30,7 +30,7 @@ $sql = "
     LEFT JOIN customers c ON e.City = c.City 
     GROUP BY e.City
 ";
-$result = $conn->query($sql);
+$result = $connection->query($sql);
 if ($result) {
     echo "<table>";
     echo "<tr><th>City</th><th>Employee Count</th><th>Customer Count</th></tr>";
@@ -49,7 +49,7 @@ $sql = "
     LEFT JOIN employees e ON c.City = e.City 
     GROUP BY c.City
 ";
-$result = $conn->query($sql);
+$result = $connection->query($sql);
 if ($result) {
     echo "<table>";
     echo "<tr><th>City</th><th>Employee Count</th><th>Customer Count</th></tr>";
@@ -73,7 +73,7 @@ $sql = "
     ) as combined
     GROUP BY city
 ";
-$result = $conn->query($sql);
+$result = $connection->query($sql);
 if ($result) {
     echo "<table>";
     echo "<tr><th>City</th><th>Employee Count</th><th>Customer Count</th></tr>";
@@ -93,7 +93,7 @@ $sql = "
     JOIN employees e ON o.EmployeeID = e.EmployeeID
     WHERE o.OrderDate > '$date'
 ";
-$result = $conn->query($sql);
+$result = $connection->query($sql);
 if ($result) {
     echo "<table>";
     echo "<tr><th>Order ID</th><th>Order Date</th><th>Employee ID</th><th>Employee Name</th></tr>";
@@ -112,7 +112,7 @@ $sql = "
     GROUP BY ProductID
     HAVING total_quantity < 200
 ";
-$result = $conn->query($sql);
+$result = $connection->query($sql);
 if ($result) {
     echo "<table>";
     echo "<tr><th>Product ID</th><th>Total Quantity</th></tr>";
@@ -134,7 +134,7 @@ $sql = "
     GROUP BY c.CustomerID
     HAVING order_count > 15
 ";
-$result = $conn->query($sql);
+$result = $connection->query($sql);
 if ($result) {
     echo "<table>";
     echo "<tr><th>Customer ID</th><th>Company Name</th><th>Order Count</th></tr>";
